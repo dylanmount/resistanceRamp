@@ -30,6 +30,8 @@ def low_pass(listToFilter):
     listToFilter = listToFilter[listWithoutNan]
     return listToFilter
 
+#these def were created using equations from a data analysis book
+#these are used to find the slope of the linear line and the error in the slope
 #delta
 def Eq8_12(x_array):
     length=len(x_array)
@@ -46,7 +48,7 @@ def Eq8_11(x_array, y_array):
     length=len(x_array)
     return ((length*np.dot(x_array,y_array))-sum(x_array)*sum(y_array))/Eq8_12(x_array)
 
-#this returns the uncertainity of Y
+#this returns the uncertainty of Y
 def Eq8_15(x_array, y_array):
     length=len(x_array)
     A = Eq8_10(x_array,y_array)
@@ -58,7 +60,7 @@ def Eq8_15(x_array, y_array):
 
     return math.sqrt((1/(length-2))*sum)
 
-#this returns the uncertainity of the slope
+#this returns the uncertainty of the slope
 def Eq8_17(x_array,y_array):    
    return Eq8_15(x_array,y_array)*math.sqrt(len(x_array)/Eq8_12(x_array))
 
@@ -67,7 +69,7 @@ def Eq8_17(x_array,y_array):
 # Removes the data that is outside the lower and upper bound
 # list is the list that needs to be filtered
 def filter(lower, upper, list):
-    # removes the values that are associted with NaN
+    # removes the values that are associated with NaN
     low = np.where(abf.sweepX == lower)[0][0]
     up = np.where(abf.sweepX == upper)[0][0]
     list = list[low:up]
@@ -75,8 +77,8 @@ def filter(lower, upper, list):
 
 
 # quadric
-# takes the average data of the voltage steps, plots it against the original and returns the conductance and resistanace
-# voltage is a the voltage step list
+# takes the average data of the voltage steps, plots it against the original, and returns the conductance and resistance
+# voltage is a voltage step list
 # current is the list of current values
 # n is the degree of polynomial and range is the scale of the y axis
 def n_reg(volt, cur, n, range, abf_num):
@@ -89,7 +91,7 @@ def n_reg(volt, cur, n, range, abf_num):
     if n == 2:
         p, cov = np.polyfit(voltage, current, n, cov=True)
         model = np.poly1d(p)
-        # find the slope at zero and print wanted data
+        # find the slope at zero and print the wanted data
         print("condutance nS", model[1], "\n", "resistance", pow(model[1], -1))
         print("error in conductance: ", math.sqrt(cov[1][1]))
 
@@ -114,7 +116,7 @@ def n_reg(volt, cur, n, range, abf_num):
 
 
     model = np.poly1d(p)
-    # add fitted polynomial line to orignal data
+    # Add fitted polynomial line to original data
     fig = plt.figure()
     ax = fig.add_subplot(111, label="1")
 
@@ -139,7 +141,7 @@ def n_reg(volt, cur, n, range, abf_num):
 
     plt.title("resistance Data File: " + abf_num)
 
-    # find the slope at zero and print wanted data
+    # find the slope at zero and print the wanted data
 
     plt.show()
 
@@ -195,7 +197,7 @@ def fileoperation(voltList, stepList, n, file):
     )
 
 
-# iterate through all files within directory that IDE is currently within. Set path to be wherever dataset is for easy itteration and saving.
+# iterate through all files within the directory that IDE is currently within. Set the path wherever the dataset is for easy iteration and saving.
 fileDir = os.listdir()
 for file in fileDir:
     # Check whether file is in abf format or not
@@ -248,17 +250,3 @@ for file in fileDir:
                 fileDir[fileDir.index(file) + int(userinput)],
             )
 
-
-
-# plot the original data
-
-
-"""
-#plot the filtered data 
-abf.setSweep(0)  # reload sweep with new filter
-label = "sigma: %.02f" % (10)
-plt.plot(abf.sweepX, abf.sweepY, alpha=.8, label=label) 
-"""
-
-
-# Create a graph of the pre and post filter data
