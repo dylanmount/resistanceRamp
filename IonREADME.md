@@ -5,9 +5,10 @@
 
 In summer 2024, **Create_ideal_trace_abf_levels_version2** was overhauled to fix bugs, reduce crashes, optimize performance, and add functionality, culminating in **Create_ideal_trace_abf_levels_version3**. Added functionality includes a peak-finding algorithm, dwell time analysis with filtering, and a more complete excel file export including error bar calculations and other dwell time and general calculations based on filter time.
 
+Automated reporting was also added, automatically saving histogram figures and creating a basic report for each run.
+
 **Last year's README Intro**: Much of the difference between this year's code is in optimizations. Many of the misc functions, were placed in defonitions for easy access and error prevention, the bin system which is defined more fully in last year's README was scaled back as was possible, and finally the old histogram function was removed. In addition to these, the **Create_ideal_trace_abf_set_levels**, was combined into the **Create_ideal_trace_abf_levels_version2**.
 **The new additions** are: a new histogram function, os integration and ui, along with functionallity for excel merging.
-
 
 # **User Directions**:
 The directory the code runs from must be the folder where the files to be analyzed are stored. Use files from a single data run in each folder. Follow user interface to run code.
