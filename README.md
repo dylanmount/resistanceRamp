@@ -1,6 +1,6 @@
 # ResistanceRamp
 
-@author: grabills
+@author: grabills, Dylanmount
 
 # Guide to Analyzing CA1 Step Resistance Measurements
 
